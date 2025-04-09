@@ -53,8 +53,8 @@
 #include "sys/log.h"
 #define LOG_MODULE "RPL"
 #define LOG_LEVEL LOG_LEVEL_RPL
-#define RPL_OCP_SECOF 0xFE
-extern rpl_of_t rpl_secof;
+#define RPL_OCP_MALOF 0xFE
+extern rpl_of_t rpl_malof;
 
 /* RFC6551 and RFC6719 do not mandate the use of a specific formula to
  * compute the ETX value. This MRHOF implementation relies on the value
@@ -248,7 +248,7 @@ static void
 update_metric_container(void)
 {
   if(!curr_instance.used) {
-    LOG_WARN("SECOF: Cannot update metric container when not joined\n");
+    LOG_WARN("MALOF: Cannot update metric container when not joined\n");
     return;
   }
 
@@ -262,7 +262,7 @@ update_metric_container(void)
   /* 💣 Advertise a fake, super low ETX */
   curr_instance.mc.obj.etx = 1;
 
-  LOG_INFO("SECOF: Falsely advertising ETX = 1\n");
+  LOG_INFO("MALOF: Falsely advertising ETX = 1\n");
 }
 #endif /* RPL_WITH_MC */
 /*---------------------------------------------------------------------------*/
@@ -275,7 +275,7 @@ rpl_of_t rpl_mrhof = {
   rank_via_nbr,
   best_parent,
   update_metric_container,
-  RPL_OCP_SECOF
+  RPL_OCP_MALOF
 };
 
 /** @}*/
