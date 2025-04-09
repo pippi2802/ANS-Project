@@ -46,7 +46,7 @@
 #include "net/ipv6/uip-sr.h"
 #include "net/nbr-table.h"
 #include "net/link-stats.h"
-
+#include "sys/node-id.h" 
 /* Log configuration */
 #include "sys/log.h"
 #define LOG_MODULE "RPL"
@@ -93,6 +93,10 @@ rpl_dag_get_root_ipaddr(uip_ipaddr_t *ipaddr)
     return 1;
   }
   return 0;
+}
+/*---------------------------------------------------------------------------*/
+void log_rank_change(rpl_dag_t *dag, uint16_t rank) {
+  printf("Node %u rank: %u\n", node_id, rank);
 }
 /*---------------------------------------------------------------------------*/
 void
@@ -356,6 +360,7 @@ rpl_dag_update_state(void)
       /* Clear unprocessed_parent_switch now that we have processed it */
       curr_instance.dag.unprocessed_parent_switch = false;
     }
+    log_rank_change(&curr_instance.dag,curr_instance.dag.rank);
   }
 
   /* Finally, update metric container */
