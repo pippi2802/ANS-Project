@@ -28,8 +28,8 @@
 #define MIN_STEP_OF_RANK   1
 #define MAX_STEP_OF_RANK   9
 
-#define MIN_HOPRANKINC     3 /* Example value */
-#define ALPHA_THRESHOLD    2 /* Example value */
+#define MIN_HOPRANKINC     3 /* just example value */
+#define ALPHA_THRESHOLD    2 /*  just example value */
 
 /* Define Modes */
 #define NORMAL_MODE        0
